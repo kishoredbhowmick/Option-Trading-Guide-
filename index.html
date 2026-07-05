@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Options Trading for Absolute Beginners — Delta Exchange Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Ticker -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+<div class="progress" id="progressBar"></div>
+<nav class="dotnav" id="dotNav"></nav>
+
+<!-- ================= PAGE 1 ================= -->
+<section class="page" id="p1">
+  <div class="page-eyebrow"><span class="num">01</span> · Orientation</div>
+  <h1 class="page-title">Welcome to the World<br>of Options Trading</h1>
+  <p class="page-sub">Learn Delta Exchange from zero to your first trade — no confusing jargon, just simple explanations, one page at a time.</p>
+
+  <div class="page-content">
+    <div class="two-col">
+      <div>
+        <div class="grid grid-3" style="margin-bottom:26px;">
+          <div class="card">
+            <span class="tag">What is trading?</span>
+            <p>Trading means buying something at one price and selling it at another, hoping the price moves in your favor. That's it — the rest is just details.</p>
+          </div>
+          <div class="card">
+            <span class="tag">What is Delta Exchange?</span>
+            <p>Delta Exchange is an app where you can trade crypto — including Bitcoin options — using real money, starting with a very small amount.</p>
+          </div>
+          <div class="card">
+            <span class="tag">Why beginners lose money</span>
+            <p>Not because the market is unfair, but because they trade too big, too often, and without a plan.</p>
+          </div>
+        </div>
+
+        <div class="section-heading">Spot vs Futures vs Options</div>
+        <div class="table-wrap">
+          <table>
+            <tr><th>Type</th><th>What you own</th><th>Risk level</th><th>Best for beginners?</th></tr>
+            <tr><td class="strong">Spot</td><td>The actual coin</td><td><span class="pill good">Low</span></td><td>Yes — start here mentally</td></tr>
+            <tr><td class="strong">Futures</td><td>A bet on price, with borrowed money</td><td><span class="pill bad">High</span></td><td>No — too risky at first</td></tr>
+            <tr><td class="strong">Options</td><td>The right (not the obligation) to buy or sell later</td><td><span class="pill">Medium</span></td><td>Yes — with small size</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="diagram-box">
+        <svg viewBox="0 0 260 320" width="100%">
+          <text x="130" y="20" text-anchor="middle" fill="#8DA0BF" font-family="JetBrains Mono" font-size="10">RISK PYRAMID</text>
+          <polygon points="130,40 190,110 70,110" fill="#F0546A" opacity="0.85"/>
+          <text x="130" y="90" text-anchor="middle" fill="#0B1220" font-family="Inter" font-size="11" font-weight="600">Futures</text>
+          <polygon points="70,112 190,112 210,190 50,190" fill="#3B82F6" opacity="0.9"/>
+          <text x="130" y="158" text-anchor="middle" fill="#fff" font-family="Inter" font-size="11" font-weight="600">Options (small size)</text>
+          <polygon points="50,192 210,192 235,280 25,280" fill="#22C55E" opacity="0.9"/>
+          <text x="130" y="240" text-anchor="middle" fill="#0B1220" font-family="Inter" font-size="11" font-weight="600">Spot / Learning</text>
+          <text x="130" y="305" text-anchor="middle" fill="#5A6E90" font-family="JetBrains Mono" font-size="9">wide base = safer, small top = riskier</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="section-heading">Your beginner roadmap</div>
+    <div class="grid grid-4">
+      <div class="card"><div class="icon-badge">📘</div><h4>Learn</h4><p>Understand charts and terms before risking anything.</p></div>
+      <div class="card"><div class="icon-badge green">🧪</div><h4>Practice</h4><p>Use a demo or paper account to test ideas.</p></div>
+      <div class="card"><div class="icon-badge">💵</div><h4>Trade small</h4><p>Risk only $1–$2 per trade while learning.</p></div>
+      <div class="card"><div class="icon-badge green">📈</div><h4>Grow slowly</h4><p>Increase size only after consistent results.</p></div>
+    </div>
+
+    <div class="callout" style="margin-top:22px;">
+      <span class="label">Bonus — why is it called "Delta"?</span>
+      <p style="font-size:14px;font-weight:400;color:var(--muted);">Delta isn't just a brand name. It's a real options term that measures how much an option's price moves when the underlying price moves by $1. You'll meet Delta again on Page 4, alongside two other useful "Greeks" — Theta and Vega.</p>
+    </div>
+
+    <div class="callout gold-rule" style="margin-top:16px;">
+      <span class="label">The Golden Rule</span>
+      <p>"Your first goal is not making money. Your first goal is protecting your capital."</p>
+    </div>
+    <p class="page-quote">Don't try to become rich in one month. Try to become skilled in one year.</p>
+  </div>
+  <div class="scrollcue">SCROLL <span class="arrow">↓</span></div>
+</section>
+
+<!-- ================= PAGE 2 ================= -->
+<section class="page" id="p2">
+  <div class="page-eyebrow"><span class="num">02</span> · Chart Reading</div>
+  <h1 class="page-title">How to Read Price<br>Like a Professional</h1>
+  <p class="page-sub">Before you touch options, you need to read the market's mood — trend, momentum, and key price levels.</p>
+
+  <div class="page-content">
+    <div class="section-heading">Market trend types</div>
+    <div class="grid grid-3">
+      <div class="card">
+        <svg viewBox="0 0 200 70" width="100%" height="60"><polyline points="10,60 50,45 90,50 130,20 190,10" fill="none" stroke="#22C55E" stroke-width="3"/></svg>
+        <h4>Uptrend</h4><p>Price makes higher highs and higher lows. Buyers are in control.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 200 70" width="100%" height="60"><polyline points="10,10 50,25 90,20 130,50 190,60" fill="none" stroke="#F0546A" stroke-width="3"/></svg>
+        <h4>Downtrend</h4><p>Price makes lower highs and lower lows. Sellers are in control.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 200 70" width="100%" height="60"><polyline points="10,35 50,25 90,45 130,25 190,35" fill="none" stroke="#3B82F6" stroke-width="3"/></svg>
+        <h4>Sideways</h4><p>Price bounces between a ceiling and a floor with no clear direction. Best avoided by beginners.</p>
+      </div>
+    </div>
+
+    <div class="section-heading">Indicators, in plain English</div>
+    <div class="grid grid-5">
+      <div class="card"><span class="tag">EMA 21</span><p>A fast-moving average line. Shows short-term direction.</p></div>
+      <div class="card"><span class="tag">EMA 50</span><p>A medium-speed line. Confirms the trend is real, not noise.</p></div>
+      <div class="card"><span class="tag">EMA 200</span><p>The slow "big picture" line. Above it usually means bullish territory.</p></div>
+      <div class="card"><span class="tag">VWAP</span><p>The average price weighted by volume — shows the "fair price" today.</p></div>
+      <div class="card"><span class="tag">RSI</span><p>A 0–100 meter of momentum. Above 70 = overheated, below 30 = oversold.</p></div>
+    </div>
+
+    <div class="section-heading">Picking a timeframe</div>
+    <div class="grid grid-3">
+      <div class="card"><span class="tag">1m – 15m charts</span><p>Fast and noisy. Used for scalping — not a great place for a beginner to start.</p></div>
+      <div class="card"><span class="tag">1H – 4H charts</span><p>A good balance of signal versus noise. Best for beginner swing trades.</p></div>
+      <div class="card"><span class="tag">1D chart</span><p>Slow and reliable. Great for confirming the bigger overall trend.</p></div>
+    </div>
+
+    <div class="two-col" style="margin-top:30px;">
+      <div class="diagram-box">
+        <svg viewBox="0 0 320 140" width="100%">
+          <polyline points="10,110 60,90 110,95 160,55 210,60 260,25 310,20" fill="none" stroke="#3B82F6" stroke-width="2.5"/>
+          <polyline points="10,120 60,115 110,105 160,90 210,70 260,55 310,45" fill="none" stroke="#22C55E" stroke-width="2.5"/>
+          <circle cx="160" cy="72" r="4" fill="#fff"/>
+          <text x="168" y="70" fill="#8DA0BF" font-family="JetBrains Mono" font-size="9">crossover ↑</text>
+        </svg>
+        <div class="cap">EMA crossover — the fast line crossing above the slow line often signals a new uptrend</div>
+      </div>
+      <div class="diagram-box">
+        <svg viewBox="0 0 320 140" width="100%">
+          <line x1="10" y1="35" x2="310" y2="35" stroke="#F0546A" stroke-dasharray="4 4"/>
+          <text x="14" y="28" fill="#F0546A" font-family="JetBrains Mono" font-size="9">resistance</text>
+          <line x1="10" y1="105" x2="310" y2="105" stroke="#22C55E" stroke-dasharray="4 4"/>
+          <text x="14" y="120" fill="#22C55E" font-family="JetBrains Mono" font-size="9">support</text>
+          <polyline points="10,90 50,60 90,80 130,40 170,75 210,45 250,90 290,55" fill="none" stroke="#EAF1FB" stroke-width="2"/>
+        </svg>
+        <div class="cap">Support and resistance — price tends to bounce off these repeated levels</div>
+      </div>
+    </div>
+
+    <div class="section-heading">Candlestick basics</div>
+    <div class="two-col">
+      <div class="diagram-box">
+        <svg viewBox="0 0 260 130" width="100%">
+          <line x1="70" y1="10" x2="70" y2="120" stroke="#5A6E90" stroke-width="1"/>
+          <rect x="55" y="40" width="30" height="55" fill="#22C55E"/>
+          <text x="70" y="12" text-anchor="middle" fill="#8DA0BF" font-family="JetBrains Mono" font-size="8">high</text>
+          <text x="70" y="118" text-anchor="middle" fill="#8DA0BF" font-family="JetBrains Mono" font-size="8">low</text>
+          <text x="130" y="55" fill="#8DA0BF" font-family="Inter" font-size="10">Green = close higher than open (bullish)</text>
+          <line x1="190" y1="10" x2="190" y2="120" stroke="#5A6E90" stroke-width="1"/>
+          <rect x="175" y="45" width="30" height="50" fill="#F0546A"/>
+          <text x="130" y="90" fill="#8DA0BF" font-family="Inter" font-size="10">Red = close lower than open (bearish)</text>
+        </svg>
+        <div class="cap">Each candle shows the open, high, low and close for one time period</div>
+      </div>
+      <div class="card">
+        <span class="tag">Volume</span>
+        <p>Volume shows how many contracts traded. A big move on high volume is far more trustworthy than the same move on low volume.</p>
+        <div class="pillrow">
+          <span class="pill good">✓ Buy only in uptrends</span>
+          <span class="pill">✓ Sell only in downtrends</span>
+          <span class="pill">✓ Avoid sideways markets</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAGE 3 ================= -->
+<section class="page" id="p3">
+  <div class="page-eyebrow"><span class="num">03</span> · Core Concept</div>
+  <h1 class="page-title">Understanding Options<br>Without Confusion</h1>
+  <p class="page-sub">An option is a reservation. You pay a small fee to lock in a price — you're never forced to use it.</p>
+
+  <div class="page-content">
+    <div class="grid grid-2">
+      <div class="card" style="background:linear-gradient(160deg,rgba(34,197,94,.12),var(--bg-card));">
+        <div class="icon-badge green" style="font-size:22px;">📈</div>
+        <h4>Call Option — "I think price goes UP"</h4>
+        <p>Buying a call means you profit if the price rises above your strike price before expiry.</p>
+      </div>
+      <div class="card" style="background:linear-gradient(160deg,rgba(240,84,106,.12),var(--bg-card));">
+        <div class="icon-badge red" style="font-size:22px;">📉</div>
+        <h4>Put Option — "I think price goes DOWN"</h4>
+        <p>Buying a put means you profit if the price falls below your strike price before expiry.</p>
+      </div>
+    </div>
+
+    <div class="section-heading">Four ways to trade options</div>
+    <div class="grid grid-4">
+      <div class="card"><span class="tag">Buy Call</span><p>Small, fixed cost. Profits if price rises. Best for beginners.</p></div>
+      <div class="card"><span class="tag">Buy Put</span><p>Small, fixed cost. Profits if price falls. Best for beginners.</p></div>
+      <div class="card"><span class="tag">Sell Call</span><p>Collects a fee upfront, but risk is large if price rises a lot. Advanced.</p></div>
+      <div class="card"><span class="tag">Sell Put</span><p>Collects a fee upfront, but risk is large if price falls a lot. Advanced.</p></div>
+    </div>
+
+    <div class="section-heading">A simple BTC example</div>
+    <div class="callout">
+      <span class="label">Walkthrough</span>
+      <p style="font-size:14.5px;font-weight:400;color:var(--muted);line-height:1.7;">
+      BTC is trading at $60,000. You believe it will rise, so you <b style="color:var(--text)">buy a call option</b> with a strike price of $61,000, paying a premium of $50.
+      If BTC rises to $63,000 before expiry, your option becomes valuable and you profit.
+      If BTC stays below $61,000, your option expires worthless — and you only lose the $50 premium you paid. Nothing more.
+      </p>
+    </div>
+
+    <div class="section-heading">Key terms glossary</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Term</th><th>Meaning</th></tr>
+        <tr><td class="strong">Strike Price</td><td>The price level you're locking in.</td></tr>
+        <tr><td class="strong">Premium</td><td>The small fee you pay to buy the option.</td></tr>
+        <tr><td class="strong">Expiry</td><td>The date the option contract ends.</td></tr>
+        <tr><td class="strong">Intrinsic Value</td><td>The "real" value if you exercised the option right now.</td></tr>
+        <tr><td class="strong">Time Value</td><td>Extra value that comes from time left until expiry.</td></tr>
+        <tr><td class="strong">ITM</td><td>In-the-money — the option already has real value.</td></tr>
+        <tr><td class="strong">ATM</td><td>At-the-money — the strike price is right at the current market price.</td></tr>
+        <tr><td class="strong">OTM</td><td>Out-of-the-money — the option has no real value yet.</td></tr>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:20px;">
+      <span class="label">One formula worth remembering</span>
+      <p style="font-size:14px;font-weight:400;color:var(--muted);">Premium = Intrinsic Value + Time Value. As expiry gets closer, Time Value shrinks toward zero — that shrinking is the "time decay" you'll read about on Page 4.</p>
+    </div>
+
+    <div class="callout gold-rule" style="margin-top:16px;">
+      <span class="label">Memory shortcut</span>
+      <p>📈 Call = Bullish &nbsp;&nbsp;·&nbsp;&nbsp; 📉 Put = Bearish</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAGE 4 ================= -->
+<section class="page" id="p4">
+  <div class="page-eyebrow"><span class="num">04</span> · Money Management</div>
+  <h1 class="page-title">How Traders Make<br>and Lose Money</h1>
+  <p class="page-sub">Winning trades don't make you profitable. Managing risk does.</p>
+
+  <div class="page-content">
+    <div class="grid grid-3">
+      <div class="card"><span class="tag">Time Decay (Theta)</span><p>Options lose a little value every single day, even if price doesn't move. Time works against option buyers.</p></div>
+      <div class="card"><span class="tag">Volatility</span><p>How much and how fast price swings. Higher volatility means more expensive premiums.</p></div>
+      <div class="card"><span class="tag">Position Size</span><p>How much money you put into one trade. The number one cause of blown accounts.</p></div>
+      <div class="card"><span class="tag">Risk</span><p>The amount you could lose if the trade goes wrong. Define it before you enter.</p></div>
+      <div class="card"><span class="tag">Reward</span><p>The amount you could gain if the trade goes right.</p></div>
+      <div class="card"><span class="tag">Risk Management</span><p>The set of rules that keeps one bad trade from wiping out your account.</p></div>
+    </div>
+
+    <div class="section-heading">A first look at "the Greeks"</div>
+    <div class="grid grid-3">
+      <div class="card"><span class="tag">Delta</span><p>How much the option's price moves for every $1 move in BTC. Higher Delta behaves more like owning BTC directly.</p></div>
+      <div class="card"><span class="tag">Theta</span><p>How much value the option loses per day, purely from time passing.</p></div>
+      <div class="card"><span class="tag">Vega</span><p>How much the option's price changes when volatility itself changes.</p></div>
+    </div>
+
+    <div class="section-heading">Good trade vs bad trade</div>
+    <div class="grid grid-2">
+      <div class="card" style="border-color:rgba(34,197,94,.35);">
+        <h4 style="color:var(--green);">✓ Good trade</h4>
+        <p>Clear trend, confirmed by EMA, VWAP and RSI together. Stop loss set before entry. Risking 1–2% of capital.</p>
+      </div>
+      <div class="card" style="border-color:rgba(240,84,106,.35);">
+        <h4 style="color:var(--red);">✗ Bad trade</h4>
+        <p>Entered on a "feeling" during a sideways market. No stop loss. Risking 30% of capital on one trade.</p>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top:26px;">
+      <div class="diagram-box">
+        <svg viewBox="0 0 300 90" width="100%">
+          <rect x="10" y="55" width="60" height="25" fill="#F0546A" opacity="0.85"/>
+          <text x="40" y="70" text-anchor="middle" fill="#0B1220" font-family="JetBrains Mono" font-size="10">Risk $10</text>
+          <rect x="90" y="15" width="200" height="25" fill="#22C55E" opacity="0.9"/>
+          <text x="190" y="30" text-anchor="middle" fill="#0B1220" font-family="JetBrains Mono" font-size="10">Reward $20</text>
+        </svg>
+        <div class="cap">A risk-to-reward ratio of 1:2 — you only need to be right 4 out of 10 times to profit</div>
+      </div>
+      <div class="callout gold-rule">
+        <span class="label">Capital protection example</span>
+        <p style="font-size:14px;font-weight:400;color:var(--muted);">With $10 total capital, risking 1–2% means risking just $0.10–$0.20 per trade — small enough to survive many losses while you learn.</p>
+      </div>
+    </div>
+
+    <div class="section-heading">P&L flowchart</div>
+    <div class="diagram-box">
+      <svg viewBox="0 0 720 100" width="100%">
+        <rect x="0" y="30" width="130" height="40" rx="8" fill="#131f36" stroke="#22314f"/>
+        <text x="65" y="54" text-anchor="middle" fill="#EAF1FB" font-size="11" font-family="Inter">Enter Trade</text>
+        <line x1="130" y1="50" x2="170" y2="50" stroke="#5A6E90"/>
+        <polygon points="170,50 160,45 160,55" fill="#5A6E90"/>
+        <rect x="175" y="30" width="150" height="40" rx="8" fill="#131f36" stroke="#22314f"/>
+        <text x="250" y="54" text-anchor="middle" fill="#EAF1FB" font-size="11" font-family="Inter">Price Moves</text>
+        <line x1="325" y1="50" x2="365" y2="50" stroke="#5A6E90"/>
+        <polygon points="365,50 355,45 355,55" fill="#5A6E90"/>
+        <rect x="370" y="30" width="170" height="40" rx="8" fill="#131f36" stroke="#22314f"/>
+        <text x="455" y="54" text-anchor="middle" fill="#EAF1FB" font-size="11" font-family="Inter">Check SL / TP hit?</text>
+        <line x1="540" y1="50" x2="580" y2="50" stroke="#5A6E90"/>
+        <polygon points="580,50 570,45 570,55" fill="#5A6E90"/>
+        <rect x="585" y="10" width="130" height="35" rx="8" fill="#1a3320" stroke="#22C55E"/>
+        <text x="650" y="32" text-anchor="middle" fill="#22C55E" font-size="10.5" font-family="Inter">Exit — Profit</text>
+        <rect x="585" y="55" width="130" height="35" rx="8" fill="#331a20" stroke="#F0546A"/>
+        <text x="650" y="77" text-anchor="middle" fill="#F0546A" font-size="10.5" font-family="Inter">Exit — Loss (planned)</text>
+      </svg>
+    </div>
+
+    <div class="callout gold-rule" style="margin-top:22px;">
+      <span class="label">Golden rule</span>
+      <p>Never risk more than 1–2% of your capital on a single trade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAGE 5 ================= -->
+<section class="page" id="p5">
+  <div class="page-eyebrow"><span class="num">05</span> · Execution</div>
+  <h1 class="page-title">Step-by-Step First Trade<br>on Delta Exchange</h1>
+  <p class="page-sub">A simple 12-step checklist to follow every single time — no skipping steps.</p>
+
+  <div class="page-content">
+    <div class="two-col">
+      <div class="steps">
+        <div class="step"><div class="n">1</div><div><div class="t">Open the BTC chart</div><div class="d">Pull up the BTC chart on Delta Exchange.</div></div></div>
+        <div class="step"><div class="n">2</div><div><div class="t">Identify the trend</div><div class="d">Is it trending up, down, or sideways?</div></div></div>
+        <div class="step"><div class="n">3</div><div><div class="t">Check the EMAs</div><div class="d">Is price above or below EMA 21/50/200?</div></div></div>
+        <div class="step"><div class="n">4</div><div><div class="t">Check VWAP</div><div class="d">Is price trading above or below VWAP?</div></div></div>
+        <div class="step"><div class="n">5</div><div><div class="t">Check RSI</div><div class="d">Is momentum overheated, oversold, or neutral?</div></div></div>
+        <div class="step"><div class="n">6</div><div><div class="t">Choose call or put</div><div class="d">Match your direction to the signals above.</div></div></div>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="n">7</div><div><div class="t">Select a strike price</div><div class="d">Usually pick one close to the current price (ATM).</div></div></div>
+        <div class="step"><div class="n">8</div><div><div class="t">Choose an expiry</div><div class="d">Give the trade enough time to play out — not too short.</div></div></div>
+        <div class="step"><div class="n">9</div><div><div class="t">Set your stop loss</div><div class="d">Decide your maximum loss before entering, not after.</div></div></div>
+        <div class="step"><div class="n">10</div><div><div class="t">Place the trade</div><div class="d">Enter with a small size — 1–2% of capital.</div></div></div>
+        <div class="step"><div class="n">11</div><div><div class="t">Manage the trade</div><div class="d">Let it play out — avoid emotional decisions mid-trade.</div></div></div>
+        <div class="step"><div class="n">12</div><div><div class="t">Exit and log it</div><div class="d">Take the profit or accept the planned loss, then write it down.</div></div></div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:6px;">
+      <span class="label">Market order vs limit order</span>
+      <p style="font-size:14px;font-weight:400;color:var(--muted);">A market order fills instantly at whatever price is available. A limit order only fills at the price you set, or better — slower, but it gives you control and helps you avoid paying more than planned during a fast move.</p>
+    </div>
+
+    <div class="section-heading">The full process at a glance</div>
+    <div class="diagram-box">
+      <svg viewBox="0 0 900 70" width="100%">
+        <g font-family="JetBrains Mono" font-size="10" fill="#8DA0BF">
+        <text x="30" y="40">Chart</text><text x="115" y="40">Trend</text><text x="205" y="40">EMA</text><text x="280" y="40">VWAP</text>
+        <text x="360" y="40">RSI</text><text x="425" y="40">Direction</text><text x="530" y="40">Strike</text><text x="610" y="40">Expiry</text>
+        <text x="690" y="40">Stop Loss</text><text x="790" y="40">Exit</text>
+        </g>
+        <line x1="0" y1="45" x2="880" y2="45" stroke="#22314f" stroke-dasharray="3 5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAGE 6 ================= -->
+<section class="page" id="p6">
+  <div class="page-eyebrow"><span class="num">06</span> · Reference</div>
+  <h1 class="page-title">20 Things Every Trader<br>Must Know</h1>
+  <p class="page-sub">Your quick-reference glossary — bookmark this page.</p>
+
+  <div class="page-content">
+    <div class="grid grid-4" id="termGrid"></div>
+  </div>
+</section>
+
+<!-- ================= PAGE 7 ================= -->
+<section class="page" id="p7">
+  <div class="page-eyebrow"><span class="num">07</span> · The Path Forward</div>
+  <h1 class="page-title">Your 90-Day<br>Learning Plan</h1>
+  <p class="page-sub">Becoming profitable is a process, not an event.</p>
+
+  <div class="page-content">
+    <div class="timeline">
+      <div class="month">
+        <div class="m-label">Month 1</div>
+        <h4>Learn charts</h4>
+        <ul><li>Master trend, EMA, VWAP, RSI</li><li>Study 20 real charts, no real money</li><li>Journal every observation</li></ul>
+      </div>
+      <div class="month">
+        <div class="m-label">Month 2</div>
+        <h4>Practice demo trading</h4>
+        <ul><li>Trade a demo or paper account daily</li><li>Follow the 12-step checklist strictly</li><li>Review wins and losses weekly</li></ul>
+      </div>
+      <div class="month">
+        <div class="m-label">Month 3</div>
+        <h4>Trade with very small capital</h4>
+        <ul><li>Risk 1–2% per trade, real money</li><li>Keep a trading journal every day</li><li>Focus on process, not profit</li></ul>
+      </div>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:26px;">
+      <div class="card">
+        <h4>Daily checklist</h4>
+        <p>☐ Check trend &nbsp; ☐ Check EMA/VWAP/RSI &nbsp; ☐ Max 1–2 trades &nbsp; ☐ Log every trade &nbsp; ☐ No revenge trading</p>
+      </div>
+      <div class="card">
+        <h4>Weekly checklist</h4>
+        <p>☐ Review journal &nbsp; ☐ Calculate win rate &nbsp; ☐ Note repeated mistakes &nbsp; ☐ Adjust position size if needed</p>
+      </div>
+    </div>
+
+    <div class="section-heading">Trading journal template</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Date</th><th>Pair</th><th>Entry</th><th>Exit</th><th>Result</th><th>Lesson</th></tr>
+        <tr><td>—</td><td>BTC</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      </table>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:26px;">
+      <div class="card" style="border-color:rgba(240,84,106,.35);">
+        <h4 style="color:var(--red);">Mistakes beginners make</h4>
+        <p>✗ Trading sideways markets &nbsp;·&nbsp; ✗ No stop loss &nbsp;·&nbsp; ✗ Oversized positions &nbsp;·&nbsp; ✗ Revenge trading after a loss</p>
+      </div>
+      <div class="card" style="border-color:rgba(34,197,94,.35);">
+        <h4 style="color:var(--green);">Professional trader habits</h4>
+        <p>✓ Trade a plan, not a feeling &nbsp;·&nbsp; ✓ Journal every trade &nbsp;·&nbsp; ✓ Protect capital first &nbsp;·&nbsp; ✓ Review weekly</p>
+      </div>
+    </div>
+
+    <div class="callout gold-rule" style="margin-top:22px;">
+      <span class="label">One myth worth killing early</span>
+      <p style="font-size:14px;font-weight:400;color:var(--muted);">Profiting on a demo account does not guarantee profit with real money — live trades add slippage, fees, and emotions a demo never tests. Treat your first real month as still part of your education, not proof that you're ready to scale up.</p>
+    </div>
+
+    <p class="page-quote">"Professionals don't predict the market. They prepare for every possible outcome."</p>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
